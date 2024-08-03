@@ -26,4 +26,4 @@ jobs:
           toolchain: stable # Modules should work on stable, not just nightly
       - name: Run tests
         run: |
-          cargo test -p llrt_modules
+          cargo test
