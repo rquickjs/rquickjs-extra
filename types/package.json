@@ -1,0 +1,26 @@
+{
+  "name": "rquickjs-extra-types",
+  "license": "Apache-2.0",
+  "version": "0.0.1",
+  "main": "",
+  "types": "index.d.ts",
+  "description": "Type definitions for rquickjs-extra",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rquickjs/rquickjs-extra",
+    "directory": "types"
+  },
+  "files": [
+    "*.d.ts"
+  ],
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  },
+  "scripts": {
+    "test": "tsc"
+  },
+  "keywords": [
+    "quickjs",
+    "types"
+  ]
+}
