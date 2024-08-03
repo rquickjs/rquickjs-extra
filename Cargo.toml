@@ -1,9 +1,23 @@
 [package]
 name = "rquickjs-extra"
-version = "0.1.0"
+version = "0.0.1"
 edition = "2021"
 license-file = "LICENSE"
 
 [features]
+default = ["all"]
+all = ["timers", "url", "console"]
+
+timers = []
+url = []
+console = []
 
 [dependencies]
+either = "1"
+log = { version = "0.4" }
+rquickjs = { version = "0.6", features = ["either", "macro", "futures"] }
+tokio = { version = "1" }
+
+[dev-dependencies]
+futures = { version = "0.3" }
+tokio = { version = "1", features = ["full"] }

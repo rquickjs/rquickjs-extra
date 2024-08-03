@@ -1,22 +1,20 @@
-# rquickjs extra
+# Rquickjs Extra
 
 This library contains modules for [rquickjs](https://github.com/DelSkayn/rquickjs) which is a high level bindings for the [QuickJS](https://bellard.org/quickjs/) JavaScript engine.
 
-Built upon the great work done in [AWS LLRT](https://github.com/awslabs/llrt).
+You should prefer to use modules from [AWS LLRT](https://github.com/awslabs/llrt/tree/main/llrt_modules) when they are available, this repository is an overflow for modules not yet integrated or that cannot be integrated.
 
 ## Compatibility matrix
 
 > [!NOTE]
 > Only a fraction of the Node.js APIs are supported. Below is a high level overview of partially supported APIs and modules.
 
-|               | Node.js | Rquickjs |
-| ------------- | ------- | -------- |
-| child_process | ✔︎      | ✔︎⚠️     |
-| fs/promises   | ✔︎      | ✔︎       |
-| fs            | ✔︎      | ✘⏱       |
-| Other modules | ✔︎      | ✘        |
+|               | Node.js | Rquickjs Extra |
+| ------------- | ------- | -------------- |
+| Timers        | ✔︎      | ✔︎⚠️           |
+| Other modules | ✔︎      | ✘              |
 
-_⚠️ = partially supported in Rquickjs_
+_⚠️ = partially supported in Rquickjs Extra_
 _⏱ = planned partial support_
 _\* = Not native_
 _\*\* = Use fetch instead_
