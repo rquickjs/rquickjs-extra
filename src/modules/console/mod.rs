@@ -17,7 +17,7 @@ const TARGET: &str = "console";
 /// # Example
 /// ```rust
 /// use rquickjs::{Context, Runtime};
-/// use rquickjs_util::console::{Console, Formatter};
+/// use rquickjs_extra::console::{Console, Formatter};
 ///
 /// fn main() {
 ///     let rt = Runtime::new().unwrap();
