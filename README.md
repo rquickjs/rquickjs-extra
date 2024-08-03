@@ -9,10 +9,12 @@ You should prefer to use modules from [AWS LLRT](https://github.com/awslabs/llrt
 > [!NOTE]
 > Only a fraction of the Node.js APIs are supported. Below is a high level overview of partially supported APIs and modules.
 
-|               | Node.js | Rquickjs Extra |
-| ------------- | ------- | -------------- |
-| Timers        | ✔︎      | ✔︎⚠️           |
-| Other modules | ✔︎      | ✘              |
+|               | Node.js | Rquickjs Extra | Feature   |
+| ------------- | ------- | -------------- | --------- |
+| Console       | ✔︎      | ✔︎⚠️           | `console` |
+| Timers        | ✔︎      | ✔︎⚠️           | `timers`  |
+| URL           | ✔︎      | ✔︎⚠️           | `url`     |
+| Other modules | ✔︎      | ✘              | N/A       |
 
 _⚠️ = partially supported in Rquickjs Extra_
 _⏱ = planned partial support_
