@@ -9,17 +9,25 @@ readme = "README.md"
 
 [features]
 default = ["all"]
-all = ["timers", "url", "console"]
+all = ["timers", "url", "console", "sqlite"]
 
-timers = []
+timers = ["tokio/time"]
 url = []
 console = []
+sqlite = ["libsqlite3-sys"]
 
 [dependencies]
 either = "1"
 log = { version = "0.4" }
-rquickjs = { version = "0.6", features = ["either", "macro", "futures"] }
+rquickjs = { version = "0.6", features = [
+  "array-buffer",
+  "either",
+  "macro",
+  "futures",
+] }
 tokio = { version = "1" }
+libsqlite3-sys = { version = "0.26", optional = true }
+tracing = "0.1"
 
 [dev-dependencies]
 futures = { version = "0.3" }
