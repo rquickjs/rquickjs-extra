@@ -10,7 +10,7 @@ use rquickjs::{
     Ctx, Exception, Object, Result,
 };
 
-use super::{StatementRaw, Value};
+use super::{Argument, StatementRaw};
 
 #[rquickjs::class]
 #[derive(rquickjs::class::Trace)]
@@ -36,8 +36,8 @@ impl StatementSync {
     fn get<'js>(
         &self,
         ctx: Ctx<'js>,
-        named_or_anon_params: Either<Value, Object<'js>>,
-        anon_params: Rest<Value>,
+        named_or_anon_params: Either<Argument<'js>, Object<'js>>,
+        anon_params: Rest<Argument<'js>>,
     ) -> Result<Option<Object<'js>>> {
         let raw = self.raw(&ctx)?;
         match named_or_anon_params {

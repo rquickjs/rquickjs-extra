@@ -3,7 +3,7 @@ use std::{
     ptr,
 };
 
-use super::{error, ffi, utils, DatabaseRaw, Value};
+use super::{error, ffi, utils, Argument, DatabaseRaw};
 
 pub struct StatementRaw {
     stmt: *mut ffi::sqlite3_stmt,
@@ -39,22 +39,24 @@ impl StatementRaw {
         self.db.decode_result(r)
     }
 
-    pub fn bind(&self, index: usize, value: Value) -> error::Result<()> {
+    pub fn bind(&self, index: usize, value: Argument) -> error::Result<()> {
         let r = match value {
-            Value::Null => unsafe { ffi::sqlite3_bind_null(self.stmt, index as c_int) },
-            Value::Integer(i) => unsafe { ffi::sqlite3_bind_int64(self.stmt, index as c_int, i) },
-            Value::Real(r) => unsafe { ffi::sqlite3_bind_double(self.stmt, index as c_int, r) },
-            Value::Text(s) => unsafe {
-                let (c_str, len) = utils::str_to_c_char(&s)?;
+            Argument::Null => unsafe { ffi::sqlite3_bind_null(self.stmt, index as c_int) },
+            Argument::Integer(i) => unsafe {
+                ffi::sqlite3_bind_int64(self.stmt, index as c_int, i)
+            },
+            Argument::Real(r) => unsafe { ffi::sqlite3_bind_double(self.stmt, index as c_int, r) },
+            Argument::Text(s) => unsafe {
+                let len = utils::len_as_c_int(s.len())?;
                 ffi::sqlite3_bind_text(
                     self.stmt,
                     index as c_int,
-                    c_str,
+                    s.as_ptr(),
                     len,
                     ffi::SQLITE_TRANSIENT(),
                 )
             },
-            Value::Blob(b) => unsafe {
+            Argument::Blob(b) => unsafe {
                 let length = utils::len_as_c_int(b.len())?;
                 ffi::sqlite3_bind_blob(
                     self.stmt,
