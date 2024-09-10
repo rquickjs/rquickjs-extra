@@ -77,4 +77,37 @@ mod tests {
         })
         .await;
     }
+
+    #[tokio::test]
+    async fn test_database_close() {
+        test_async_with(|ctx| {
+            Box::pin(async move {
+                ModuleEvaluator::eval_rust::<SqliteModule>(ctx.clone(), "sqlite")
+                    .await
+                    .unwrap();
+
+                let module = ModuleEvaluator::eval_js(
+                    ctx.clone(),
+                    "test",
+                    r#"
+                        import { open } from "sqlite";
+
+                        export async function test() {
+                            const db = await open({ inMemory: true });
+                            await db.exec("CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY, name TEXT);");
+                            await db.close();
+                            return "ok";
+                        }
+                    "#,
+                )
+                .await
+                .catch(&ctx)
+                .unwrap();
+
+                let result = call_test::<String, _>(&ctx, &module, ()).await;
+                assert_eq!(result, "ok");
+            })
+        })
+        .await;
+    }
 }
