@@ -81,6 +81,21 @@ impl Statement {
         let obj = Self::row_to_object(&ctx, &row)?;
         Ok(Some(obj))
     }
+
+    async fn run<'js>(
+        &self,
+        ctx: Ctx<'js>,
+        anon_params: Rest<Argument<'js>>,
+    ) -> Result<Object<'js>> {
+        let query = self.query(&ctx, &anon_params.0)?;
+
+        let res = query.execute(&self.pool).await.or_throw(&ctx)?;
+
+        let obj = Object::new(ctx.clone())?;
+        obj.set("changes", res.rows_affected())?;
+        obj.set("lastInsertRowid", res.last_insert_rowid())?;
+        Ok(obj)
+    }
 }
 
 #[cfg(test)]
