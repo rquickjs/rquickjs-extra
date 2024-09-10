@@ -5,6 +5,7 @@ use std::{fmt::Write, result::Result as StdResult};
 
 use rquickjs::{Ctx, Exception, Result};
 
+#[allow(dead_code)]
 pub trait ResultExt<T> {
     fn or_throw_msg(self, ctx: &Ctx, msg: &str) -> Result<T>;
     fn or_throw_range(self, ctx: &Ctx, msg: Option<&str>) -> Result<T>;
