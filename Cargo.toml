@@ -9,16 +9,26 @@ readme = "README.md"
 
 [features]
 default = ["all"]
-all = ["timers", "url", "console"]
+all = ["timers", "url", "console", "sqlite"]
 
-timers = []
+timers = ["tokio/time"]
 url = []
 console = []
+sqlite = ["sqlx"]
 
 [dependencies]
 either = "1"
 log = { version = "0.4" }
-rquickjs = { version = "0.6", features = ["either", "macro", "futures"] }
+rquickjs = { version = "0.6", features = [
+  "array-buffer",
+  "either",
+  "macro",
+  "futures",
+] }
+sqlx = { version = "0.8", default-features = false, features = [
+  "sqlite",
+  "runtime-tokio",
+], optional = true }
 tokio = { version = "1" }
 
 [dev-dependencies]
