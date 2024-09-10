@@ -4,10 +4,11 @@ use rquickjs::{
     Class, Ctx, Result,
 };
 
-use self::argument::Argument;
-use self::database::Database;
-use self::statement::Statement;
-use self::value::Value;
+pub use self::argument::Argument;
+pub use self::database::Database;
+pub use self::open::open;
+pub use self::statement::Statement;
+pub use self::value::Value;
 use crate::utils::module::export_default;
 
 mod argument;
