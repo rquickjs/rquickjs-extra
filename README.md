@@ -14,6 +14,7 @@ You should prefer to use modules from [AWS LLRT](https://github.com/awslabs/llrt
 | Console       | ✔︎      | ✔︎⚠️           | `console` |
 | Timers        | ✔︎      | ✔︎⚠️           | `timers`  |
 | URL           | ✔︎      | ✔︎⚠️           | `url`     |
+| Sqlite        | ⏱       | ✔︎⚠️           | `sqlite`  |
 | Other modules | ✔︎      | ✘              | N/A       |
 
 _⚠️ = partially supported in Rquickjs Extra_
