@@ -12,7 +12,6 @@ use crate::utils::module::export_default;
 
 mod argument;
 mod database;
-mod error;
 mod open;
 mod statement;
 mod value;
