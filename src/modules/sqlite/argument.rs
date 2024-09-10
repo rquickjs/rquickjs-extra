@@ -1,4 +1,7 @@
-use rquickjs::{Ctx, Exception, FromJs, Result, TypedArray, Value};
+use rquickjs::{Ctx, Exception, FromJs, Result, TypedArray};
+use sqlx::query::Query;
+use sqlx::sqlite::SqliteArguments;
+use sqlx::Sqlite;
 
 use crate::ffi::{CString, CVec};
 use crate::utils::result::ResultExt;
@@ -36,5 +39,24 @@ impl<'js> FromJs<'js> for Argument<'js> {
             ctx,
             &["Value of type '", value.type_name(), "' is not supported"].concat(),
         ))
+    }
+}
+
+impl<'js> Argument<'js> {
+    pub fn try_bind<'q>(
+        &'q self,
+        ctx: &Ctx<'js>,
+        query: &mut Query<'q, Sqlite, SqliteArguments<'q>>,
+    ) -> Result<()>
+    where
+        'js: 'q,
+    {
+        match self {
+            Argument::Null => query.try_bind::<Option<i32>>(None).or_throw(ctx),
+            Argument::Integer(int) => query.try_bind(*int).or_throw(ctx),
+            Argument::Real(float) => query.try_bind(*float).or_throw(ctx),
+            Argument::Text(string) => query.try_bind(string.as_str()?).or_throw(ctx),
+            Argument::Blob(blob) => query.try_bind(blob.as_slice()).or_throw(ctx),
+        }
     }
 }

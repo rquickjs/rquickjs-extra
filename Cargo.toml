@@ -27,6 +27,7 @@ rquickjs = { version = "0.6", features = [
 ] }
 sqlx = { version = "0.8", default-features = false, features = [
   "sqlite",
+  "runtime-tokio",
 ], optional = true }
 tokio = { version = "1" }
 

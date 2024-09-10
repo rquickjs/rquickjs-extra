@@ -1,7 +1,7 @@
-use std::ffi::c_char;
 use std::mem;
+use std::{ffi::c_char, slice, str};
 
-use rquickjs::{qjs, Error, Result, String, Value};
+use rquickjs::{qjs, Error, Exception, Result, String, Value};
 
 #[derive(Debug)]
 pub struct CString<'js> {
@@ -10,6 +10,7 @@ pub struct CString<'js> {
     value: Value<'js>,
 }
 
+#[allow(dead_code)]
 impl<'js> CString<'js> {
     pub fn from_string(string: String<'js>) -> Result<Self> {
         let mut len = mem::MaybeUninit::uninit();
@@ -39,6 +40,12 @@ impl<'js> CString<'js> {
 
     pub fn len(&self) -> usize {
         self.len
+    }
+
+    pub fn as_str(&self) -> Result<&str> {
+        let bytes = unsafe { slice::from_raw_parts(self.ptr as *const u8, self.len) };
+        str::from_utf8(bytes)
+            .map_err(|_| Exception::throw_message(self.value.ctx(), "Invalid UTF-8"))
     }
 }
 

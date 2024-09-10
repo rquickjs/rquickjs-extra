@@ -1,6 +1,7 @@
-use rquickjs::{function::Opt, Ctx, Exception, FromJs, Object, Result, Value};
-use sqlx::SqlitePool;
+use rquickjs::{Ctx, Result};
+use sqlx::{Executor, SqlitePool};
 
+use super::Statement;
 use crate::utils::result::ResultExt;
 
 #[rquickjs::class]
@@ -18,12 +19,22 @@ impl Database {
 
 #[rquickjs::methods(rename_all = "camelCase")]
 impl Database {
-    async fn execute(&self, ctx: Ctx<'_>, sql: String) -> Result<()> {
-        todo!()
+    async fn exec(&self, ctx: Ctx<'_>, sql: String) -> Result<()> {
+        sqlx::raw_sql(&sql)
+            .execute(&self.pool)
+            .await
+            .or_throw(&ctx)?;
+        Ok(())
     }
 
-    async fn close(&mut self, ctx: Ctx<'_>) -> Result<()> {
-        todo!()
+    async fn prepare(&self, ctx: Ctx<'_>, sql: String) -> Result<Statement> {
+        let stmt = sqlx::Statement::to_owned(&self.pool.prepare(&sql).await.or_throw(&ctx)?);
+        Ok(Statement::new(stmt, self.pool.clone()))
+    }
+
+    async fn close(&mut self) -> Result<()> {
+        self.pool.close().await;
+        Ok(())
     }
 }
 
@@ -35,7 +46,7 @@ mod tests {
     use crate::test::{call_test, test_async_with, ModuleEvaluator};
 
     #[tokio::test]
-    async fn test_open_exec() {
+    async fn test_database_exec() {
         test_async_with(|ctx| {
             Box::pin(async move {
                 ModuleEvaluator::eval_rust::<SqliteModule>(ctx.clone(), "sqlite")
@@ -46,11 +57,10 @@ mod tests {
                     ctx.clone(),
                     "test",
                     r#"
-                        import { Database } from "sqlite";
+                        import { open } from "sqlite";
 
                         export async function test() {
-                            const db = new Database(":memory:");
-                            await db.open();
+                            const db = await open({ inMemory: true });
                             await db.exec("CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY, name TEXT);");
                             await db.exec("INSERT INTO test (name) VALUES ('test');");
                             return "ok";

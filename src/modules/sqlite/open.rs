@@ -7,7 +7,7 @@ use super::Database;
 
 static IN_MEMORY_DB_SEQ: AtomicUsize = AtomicUsize::new(0);
 
-async fn open(options: OpenOptions) -> Result<Database> {
+pub async fn open(options: OpenOptions) -> Result<Database> {
     let mut connect_options = SqliteConnectOptions::new();
     if let Some(filename) = options.filename {
         connect_options = connect_options.filename(filename).create_if_missing(true);

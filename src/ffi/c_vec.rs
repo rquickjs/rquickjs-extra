@@ -10,6 +10,7 @@ pub struct CVec<'js> {
     value: Value<'js>,
 }
 
+#[allow(dead_code)]
 impl<'js> CVec<'js> {
     pub fn from_array(array: TypedArray<'js, u8>) -> Result<Self> {
         let raw = array.as_raw().or_throw(array.ctx())?;
@@ -26,5 +27,9 @@ impl<'js> CVec<'js> {
 
     pub fn len(&self) -> usize {
         self.len
+    }
+
+    pub fn as_slice(&self) -> &[u8] {
+        unsafe { std::slice::from_raw_parts(self.ptr, self.len) }
     }
 }
