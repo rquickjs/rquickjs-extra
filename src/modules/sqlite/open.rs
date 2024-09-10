@@ -51,16 +51,16 @@ pub async fn open(ctx: Ctx<'_>, options: OpenOptions) -> Result<Database> {
 
 #[derive(Debug, Clone)]
 pub struct OpenOptions {
-    filename: Option<PathBuf>,
-    in_memory: bool,
-    wal: bool,
-    page_size: u32,
-    foreign_keys: bool,
-    max_connections: u32,
-    min_connections: u32,
-    idle_timeout: Option<Duration>,
-    max_lifetime: Option<Duration>,
-    busy_timeout: Duration,
+    pub filename: Option<PathBuf>,
+    pub in_memory: bool,
+    pub wal: bool,
+    pub page_size: u32,
+    pub foreign_keys: bool,
+    pub max_connections: u32,
+    pub min_connections: u32,
+    pub idle_timeout: Option<Duration>,
+    pub max_lifetime: Option<Duration>,
+    pub busy_timeout: Duration,
 }
 
 impl Default for OpenOptions {
