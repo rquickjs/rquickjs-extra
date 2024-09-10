@@ -8,11 +8,13 @@ use either::Either;
 use rquickjs::{Ctx, FromJs, Null, Object, Result, Value};
 use sqlx::sqlite::{SqliteConnectOptions, SqlitePoolOptions};
 
+use crate::utils::result::ResultExt;
+
 use super::Database;
 
 static IN_MEMORY_DB_SEQ: AtomicUsize = AtomicUsize::new(0);
 
-pub async fn open(options: OpenOptions) -> Result<Database> {
+pub async fn open(ctx: Ctx<'_>, options: OpenOptions) -> Result<Database> {
     let mut connect_options = SqliteConnectOptions::new();
     connect_options = connect_options
         .foreign_keys(options.foreign_keys)
@@ -40,7 +42,10 @@ pub async fn open(options: OpenOptions) -> Result<Database> {
         .max_connections(options.max_connections)
         .min_connections(options.min_connections);
 
-    let pool = pool_options.connect_with(connect_options).await.unwrap();
+    let pool = pool_options
+        .connect_with(connect_options)
+        .await
+        .or_throw_msg(&ctx, "Unable to open database")?;
     Ok(Database::new(pool))
 }
 
