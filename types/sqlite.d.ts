@@ -20,6 +20,41 @@ declare module "sqlite" {
      * @default true
      */
     wal?: boolean | undefined;
+    /**
+     * Set the SQlite page size.
+     * @default 4096
+     */
+    pageSize?: number | undefined;
+    /**
+     * Enable foreign key constraints.
+     */
+    foreignKeys?: boolean | undefined;
+    /**
+     * Maximum number of connections to the database.
+     * @default 5
+     */
+    maxConnections?: number | undefined;
+    /**
+     * Minimum number of connections to the database.
+     * @default 0
+     */
+    minConnections?: number | undefined;
+    /**
+     * Maximum amount of time (in seconds) that a connection is allowed to be idle before it is closed.
+     * @default infinity
+     */
+    idleTimeout?: number | undefined;
+    /**
+     * Maximum amount of time (in seconds) that a connection is allowed to exist before it is closed.
+     * Set to `null` to disable.
+     * @default 3600
+     */
+    maxLifetime?: number | undefined;
+    /**
+     * Time (in milliseconds) to wait for the database to be unlocked before throwing an error.
+     * @default 5000
+     */
+    busyTimeout?: number | undefined;
   };
 
   /**
