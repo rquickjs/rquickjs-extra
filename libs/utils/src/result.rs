@@ -1,4 +1,5 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright Emile Fugulin for modifications.
 // SPDX-License-Identifier: Apache-2.0
 // Source: https://github.com/awslabs/llrt/blob/07eb540a204dcdce44143220876630804f381ca6/llrt_utils/src/result.rs
 use std::{fmt::Write, result::Result as StdResult};

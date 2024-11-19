@@ -1,4 +1,5 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright Emile Fugulin for modifications.
 // SPDX-License-Identifier: Apache-2.0
 use std::env;
 
