@@ -50,3 +50,4 @@ jobs:
       os: ${{ matrix.os }}
       platform: ${{ matrix.platform }}
       arch: ${{ matrix.arch }}
+      toolchain: ${{ matrix.toolchain }}
