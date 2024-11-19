@@ -1,6 +1,6 @@
 use rquickjs::{Result, TypedArray, Value};
 
-use crate::utils::result::ResultExt;
+use crate::result::ResultExt;
 
 #[derive(Debug)]
 pub struct CVec<'js> {
@@ -27,6 +27,10 @@ impl<'js> CVec<'js> {
 
     pub fn len(&self) -> usize {
         self.len
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.len == 0
     }
 
     pub fn as_slice(&self) -> &[u8] {

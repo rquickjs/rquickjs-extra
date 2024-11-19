@@ -1,0 +1,18 @@
+[package]
+name = "rquickjs-extra-timers"
+description = "Timers module for RQuickJS"
+version = "0.0.1"
+edition = "2021"
+license = "Apache-2.0"
+repository = "https://github.com/rquickjs/rquickjs-extra"
+readme = "README.md"
+
+[dependencies]
+log = { workspace = true }
+rquickjs = { workspace = true }
+tokio = { workspace = true, features = ["time"] }
+
+[dev-dependencies]
+futures = { workspace = true }
+rquickjs-extra-test = { path = "../../libs/test" }
+tokio = { workspace = true, features = ["full"] }

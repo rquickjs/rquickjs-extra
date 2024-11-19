@@ -1,8 +1,7 @@
 use rquickjs::{Ctx, Exception, IntoJs, Result, String, TypedArray};
+use rquickjs_extra_utils::result::ResultExt;
 use sqlx::sqlite::{SqliteColumn, SqliteRow};
 use sqlx::{Column as _, Decode, Row as _, TypeInfo as _, ValueRef};
-
-use crate::utils::result::ResultExt;
 
 pub enum Value<'q> {
     Null,

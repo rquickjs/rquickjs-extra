@@ -6,9 +6,8 @@ use std::{
 
 use either::Either;
 use rquickjs::{Ctx, FromJs, Null, Object, Result, Value};
+use rquickjs_extra_utils::result::ResultExt;
 use sqlx::sqlite::{SqliteConnectOptions, SqlitePoolOptions};
-
-use crate::utils::result::ResultExt;
 
 use super::Database;
 

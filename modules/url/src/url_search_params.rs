@@ -325,9 +325,9 @@ impl<'js> FromJs<'js> for URLSearchParamsInput<'js> {
 #[cfg(test)]
 mod tests {
     use rquickjs::{CatchResultExt, Class};
+    use rquickjs_extra_test::test_with;
 
     use super::*;
-    use crate::test::test_with;
 
     #[test]
     fn test_basic() {

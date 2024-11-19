@@ -42,6 +42,10 @@ impl<'js> CString<'js> {
         self.len
     }
 
+    pub fn is_empty(&self) -> bool {
+        self.len == 0
+    }
+
     pub fn as_str(&self) -> Result<&str> {
         let bytes = unsafe { slice::from_raw_parts(self.ptr as *const u8, self.len) };
         str::from_utf8(bytes)

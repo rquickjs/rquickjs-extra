@@ -1,11 +1,10 @@
 use rquickjs::function::Rest;
 use rquickjs::{Ctx, Object, Result};
+use rquickjs_extra_utils::result::ResultExt;
 use sqlx::query::Query;
 use sqlx::sqlite::SqliteArguments;
 use sqlx::Sqlite;
 use sqlx::{sqlite::SqliteStatement, Column as _, Row as _, SqlitePool, Statement as _};
-
-use crate::utils::result::ResultExt;
 
 use super::{Argument, Value};
 
@@ -101,9 +100,9 @@ impl Statement {
 #[cfg(test)]
 mod tests {
     use rquickjs::CatchResultExt;
+    use rquickjs_extra_test::{call_test, test_async_with, ModuleEvaluator};
 
-    use crate::sqlite::SqliteModule;
-    use crate::test::{call_test, test_async_with, ModuleEvaluator};
+    use crate::SqliteModule;
 
     #[tokio::test]
     async fn test_statement_all() {

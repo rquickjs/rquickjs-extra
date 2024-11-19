@@ -1,8 +1,8 @@
 use rquickjs::{Ctx, Result};
+use rquickjs_extra_utils::result::ResultExt;
 use sqlx::{Executor, SqlitePool};
 
 use super::Statement;
-use crate::utils::result::ResultExt;
 
 #[rquickjs::class]
 #[derive(rquickjs::class::Trace)]
@@ -41,9 +41,9 @@ impl Database {
 #[cfg(test)]
 mod tests {
     use rquickjs::CatchResultExt;
+    use rquickjs_extra_test::{call_test, test_async_with, ModuleEvaluator};
 
-    use crate::sqlite::SqliteModule;
-    use crate::test::{call_test, test_async_with, ModuleEvaluator};
+    use crate::SqliteModule;
 
     #[tokio::test]
     async fn test_database_exec() {

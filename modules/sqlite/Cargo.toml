@@ -1,0 +1,18 @@
+[package]
+name = "rquickjs-extra-sqlite"
+description = "SQLite module for RQuickJS"
+version = "0.0.1"
+edition = "2021"
+license = "Apache-2.0"
+repository = "https://github.com/rquickjs/rquickjs-extra"
+readme = "README.md"
+
+[dependencies]
+either = { workspace = true }
+rquickjs = { workspace = true }
+rquickjs-extra-utils = { path = "../../libs/utils" }
+sqlx = { workspace = true }
+
+[dev-dependencies]
+rquickjs-extra-test = { path = "../../libs/test" }
+tokio = { workspace = true, features = ["full"] }

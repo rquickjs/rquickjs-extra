@@ -11,13 +11,24 @@ readme = "README.md"
 default = ["all"]
 all = ["timers", "url", "console", "sqlite"]
 
-timers = ["tokio/time"]
-url = []
-console = []
-sqlite = ["sqlx"]
+timers = ["rquickjs-extra-timers"]
+url = ["rquickjs-extra-url"]
+console = ["rquickjs-extra-console"]
+sqlite = ["rquickjs-extra-sqlite"]
 
 [dependencies]
+rquickjs-extra-console = { path = "modules/console", optional = true }
+rquickjs-extra-sqlite = { path = "modules/sqlite", optional = true }
+rquickjs-extra-timers = { path = "modules/timers", optional = true }
+rquickjs-extra-url = { path = "modules/url", optional = true }
+
+[workspace]
+resolver = "2"
+members = ["modules/*", "libs/*"]
+
+[workspace.dependencies]
 either = "1"
+futures = { version = "0.3" }
 log = { version = "0.4" }
 rquickjs = { version = "0.6", features = [
   "array-buffer",
@@ -28,9 +39,5 @@ rquickjs = { version = "0.6", features = [
 sqlx = { version = "0.8.2", default-features = false, features = [
   "sqlite",
   "runtime-tokio",
-], optional = true }
+] }
 tokio = { version = "1" }
-
-[dev-dependencies]
-futures = { version = "0.3" }
-tokio = { version = "1", features = ["full"] }

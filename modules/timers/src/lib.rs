@@ -113,9 +113,9 @@ mod tests {
     use futures::FutureExt;
     use rquickjs::promise::Promise;
     use rquickjs::CatchResultExt;
+    use rquickjs_extra_test::test_async_with;
 
     use super::*;
-    use crate::test::test_async_with;
 
     #[tokio::test]
     async fn test_set_timeout() {

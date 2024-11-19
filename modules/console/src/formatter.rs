@@ -220,8 +220,9 @@ impl FormatterBuilder {
 
 #[cfg(test)]
 mod tests {
+    use rquickjs_extra_test::test_with;
+
     use super::*;
-    use crate::test::test_with;
 
     type StdString = std::string::String;
 

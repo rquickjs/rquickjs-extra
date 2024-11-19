@@ -94,8 +94,9 @@ pub fn init(ctx: &Ctx<'_>) -> Result<()> {
 
 #[cfg(test)]
 mod tests {
+    use rquickjs_extra_test::test_with;
+
     use super::*;
-    use crate::test::test_with;
 
     #[test]
     fn test_console() {

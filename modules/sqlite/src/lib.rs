@@ -3,13 +3,13 @@ use rquickjs::{
     module::{Declarations, Exports, ModuleDef},
     Class, Ctx, Result,
 };
+use rquickjs_extra_utils::module::export_default;
 
 pub use self::argument::Argument;
 pub use self::database::Database;
 pub use self::open::{open, OpenOptions};
 pub use self::statement::Statement;
 pub use self::value::Value;
-use crate::utils::module::export_default;
 
 mod argument;
 mod database;
