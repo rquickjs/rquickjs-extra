@@ -8,6 +8,6 @@ repository = "https://github.com/rquickjs/rquickjs-extra"
 readme = "README.md"
 
 [dependencies]
-futures = { workspace = true }
-rquickjs = { workspace = true }
-tokio = { workspace = true, features = ["full"] }
+futures = { version = "0.3" }
+rquickjs = { version = "0.6", features = ["macro", "futures"] }
+tokio = { version = "1", features = ["full"] }

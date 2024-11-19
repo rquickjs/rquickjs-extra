@@ -8,4 +8,4 @@ repository = "https://github.com/rquickjs/rquickjs-extra"
 readme = "README.md"
 
 [dependencies]
-rquickjs = { workspace = true }
+rquickjs = { version = "0.6", features = ["array-buffer"] }

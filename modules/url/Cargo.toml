@@ -8,8 +8,8 @@ repository = "https://github.com/rquickjs/rquickjs-extra"
 readme = "README.md"
 
 [dependencies]
-either = { workspace = true }
-rquickjs = { workspace = true }
+either = { version = "1" }
+rquickjs = { version = "0.6", features = ["either", "macro"] }
 
 [dev-dependencies]
 rquickjs-extra-test = { path = "../../libs/test" }

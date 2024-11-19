@@ -8,7 +8,20 @@ repository = "https://github.com/rquickjs/rquickjs-extra"
 readme = "README.md"
 
 [dependencies]
+num_cpus = "1"
+once_cell = "1"
+rquickjs = { version = "0.6", features = ["macro"] }
+rquickjs-extra-utils = { path = "../../libs/utils" }
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[target.'cfg(windows)'.dependencies]
+windows-registry = "0.2"
+windows-result = "0.2"
+windows-version = "0.1"
 
 [dev-dependencies]
-futures = { version = "0.3" }
+rquickjs = { version = "0.6", features = ["futures"] }
+rquickjs-extra-test = { path = "../../libs/test" }
 tokio = { version = "1", features = ["full"] }

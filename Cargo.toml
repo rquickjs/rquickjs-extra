@@ -25,19 +25,3 @@ rquickjs-extra-url = { path = "modules/url", optional = true }
 [workspace]
 resolver = "2"
 members = ["modules/*", "libs/*"]
-
-[workspace.dependencies]
-either = "1"
-futures = { version = "0.3" }
-log = { version = "0.4" }
-rquickjs = { version = "0.6", features = [
-  "array-buffer",
-  "either",
-  "macro",
-  "futures",
-] }
-sqlx = { version = "0.8.2", default-features = false, features = [
-  "sqlite",
-  "runtime-tokio",
-] }
-tokio = { version = "1" }
