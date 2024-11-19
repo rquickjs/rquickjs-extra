@@ -6,7 +6,7 @@ use std::env;
 use rquickjs::{
     module::{Declarations, Exports, ModuleDef},
     prelude::Func,
-    Ctx, Result,
+    Ctx, Exception, Result,
 };
 use rquickjs_extra_utils::{
     module::export_default,
@@ -23,6 +23,12 @@ mod unix;
 #[cfg(windows)]
 mod windows;
 
+fn get_home_dir(ctx: Ctx<'_>) -> Result<String> {
+    home::home_dir()
+        .map(|val| val.to_string_lossy().into_owned())
+        .ok_or_else(|| Exception::throw_message(&ctx, "Could not determine home directory"))
+}
+
 fn get_tmp_dir() -> String {
     env::temp_dir().to_string_lossy().to_string()
 }
@@ -35,14 +41,15 @@ pub struct OsModule;
 
 impl ModuleDef for OsModule {
     fn declare(declare: &Declarations) -> Result<()> {
-        declare.declare("type")?;
+        declare.declare("arch")?;
+        declare.declare("availableParallelism")?;
+        declare.declare("EOL")?;
+        declare.declare("platform")?;
+        declare.declare("homedir")?;
         declare.declare("release")?;
         declare.declare("tmpdir")?;
-        declare.declare("platform")?;
+        declare.declare("type")?;
         declare.declare("version")?;
-        declare.declare("EOL")?;
-        declare.declare("availableParallelism")?;
-        declare.declare("arch")?;
 
         declare.declare("default")?;
 
@@ -51,17 +58,18 @@ impl ModuleDef for OsModule {
 
     fn evaluate<'js>(ctx: &Ctx<'js>, exports: &Exports<'js>) -> Result<()> {
         export_default(ctx, exports, |default| {
-            default.set("type", Func::from(get_type))?;
-            default.set("release", Func::from(get_release))?;
-            default.set("tmpdir", Func::from(get_tmp_dir))?;
-            default.set("platform", Func::from(get_platform))?;
-            default.set("version", Func::from(get_version))?;
-            default.set("EOL", EOL)?;
+            default.set("arch", Func::from(get_arch))?;
             default.set(
                 "availableParallelism",
                 Func::from(get_available_parallelism),
             )?;
-            default.set("arch", Func::from(get_arch))?;
+            default.set("EOL", EOL)?;
+            default.set("homedir", Func::from(get_home_dir))?;
+            default.set("platform", Func::from(get_platform))?;
+            default.set("release", Func::from(get_release))?;
+            default.set("tmpdir", Func::from(get_tmp_dir))?;
+            default.set("type", Func::from(get_type))?;
+            default.set("version", Func::from(get_version))?;
 
             Ok(())
         })
