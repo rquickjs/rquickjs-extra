@@ -9,15 +9,17 @@ readme = "README.md"
 
 [features]
 default = ["all"]
-all = ["timers", "url", "console", "sqlite"]
+all = ["timers", "url", "console", "sqlite", "os"]
 
 timers = ["rquickjs-extra-timers"]
+os = ["rquickjs-extra-os"]
 url = ["rquickjs-extra-url"]
 console = ["rquickjs-extra-console"]
 sqlite = ["rquickjs-extra-sqlite"]
 
 [dependencies]
 rquickjs-extra-console = { path = "modules/console", optional = true }
+rquickjs-extra-os = { path = "modules/os", optional = true }
 rquickjs-extra-sqlite = { path = "modules/sqlite", optional = true }
 rquickjs-extra-timers = { path = "modules/timers", optional = true }
 rquickjs-extra-url = { path = "modules/url", optional = true }
