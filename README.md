@@ -12,6 +12,7 @@ You should prefer to use modules from [AWS LLRT](https://github.com/awslabs/llrt
 |               | Node.js | Rquickjs Extra | Feature   |
 | ------------- | ------- | -------------- | --------- |
 | Console       | ✔︎      | ✔︎⚠️           | `console` |
+| OS            | ✔︎      | ✔︎⚠️           | `os`      |
 | Timers        | ✔︎      | ✔︎⚠️           | `timers`  |
 | URL           | ✔︎      | ✔︎⚠️           | `url`     |
 | Sqlite        | ⏱       | ✔︎⚠️           | `sqlite`  |
