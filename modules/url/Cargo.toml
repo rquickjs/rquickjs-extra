@@ -12,4 +12,4 @@ either = { version = "1" }
 rquickjs = { version = "0.9", features = ["either", "macro"] }
 
 [dev-dependencies]
-rquickjs-extra-test = { version = "0.1.0", path = "../../libs/test" }
+rquickjs-extra-test = { path = "../../libs/test" }

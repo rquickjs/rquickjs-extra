@@ -15,12 +15,12 @@ rquickjs = { version = "0.9", features = [
   "macro",
   "futures",
 ] }
-rquickjs-extra-utils = { version = "0.1.0", path = "../../libs/utils" }
+rquickjs-extra-utils = { path = "../../libs/utils" }
 sqlx = { version = "0.8", default-features = false, features = [
   "sqlite",
   "runtime-tokio",
 ] }
 
 [dev-dependencies]
-rquickjs-extra-test = { version = "0.1.0", path = "../../libs/test" }
+rquickjs-extra-test = { path = "../../libs/test" }
 tokio = { version = "1", features = ["full"] }

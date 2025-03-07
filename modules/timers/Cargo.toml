@@ -14,5 +14,5 @@ tokio = { version = "1", features = ["time", "macros"] }
 
 [dev-dependencies]
 futures = { version = "0.3" }
-rquickjs-extra-test = { version = "0.1.0", path = "../../libs/test" }
+rquickjs-extra-test = { path = "../../libs/test" }
 tokio = { version = "1", features = ["full"] }
