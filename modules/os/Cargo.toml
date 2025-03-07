@@ -18,8 +18,8 @@ rquickjs-extra-utils = { path = "../../libs/utils" }
 libc = "0.2"
 
 [target.'cfg(windows)'.dependencies]
-windows-registry = "0.2"
-windows-result = "0.2"
+windows-registry = "0.5"
+windows-result = "0.3"
 windows-version = "0.1"
 
 [dev-dependencies]
