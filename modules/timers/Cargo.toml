@@ -9,7 +9,7 @@ readme = "README.md"
 
 [dependencies]
 log = { version = "0.4" }
-rquickjs = { version = "0.6", features = ["macro", "futures"] }
+rquickjs = { version = "0.9", features = ["macro", "futures"] }
 tokio = { version = "1", features = ["time", "macros"] }
 
 [dev-dependencies]

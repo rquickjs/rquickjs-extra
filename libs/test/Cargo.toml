@@ -9,5 +9,5 @@ readme = "README.md"
 
 [dependencies]
 futures = { version = "0.3" }
-rquickjs = { version = "0.6", features = ["macro", "futures"] }
+rquickjs = { version = "0.9", features = ["macro", "futures"] }
 tokio = { version = "1", features = ["full"] }

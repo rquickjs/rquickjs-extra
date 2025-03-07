@@ -9,14 +9,14 @@ readme = "README.md"
 
 [dependencies]
 either = { version = "1" }
-rquickjs = { version = "0.6", features = [
+rquickjs = { version = "0.9", features = [
   "array-buffer",
   "either",
   "macro",
   "futures",
 ] }
 rquickjs-extra-utils = { path = "../../libs/utils" }
-sqlx = { version = "0.8.2", default-features = false, features = [
+sqlx = { version = "0.8", default-features = false, features = [
   "sqlite",
   "runtime-tokio",
 ] }

@@ -53,7 +53,7 @@ impl<'js> CString<'js> {
     }
 }
 
-impl<'js> Drop for CString<'js> {
+impl Drop for CString<'_> {
     fn drop(&mut self) {
         unsafe { qjs::JS_FreeCString(self.value.ctx().as_raw().as_ptr(), self.ptr) };
     }

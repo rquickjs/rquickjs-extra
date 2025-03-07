@@ -3,11 +3,11 @@ use rquickjs::{
     atom::PredefinedAtom,
     class::Trace,
     function::{Func, IntoArgs, Opt, This},
-    Array, Coerced, Ctx, Error, FromJs, Function, Null, Object, Result, Value,
+    Array, Coerced, Ctx, Error, FromJs, Function, JsLifetime, Null, Object, Result, Value,
 };
 
 /// The URLSearchParams interface defines utility methods to work with the query string of a URL.
-#[derive(Default, Clone, Trace)]
+#[derive(Default, Clone, Trace, JsLifetime)]
 #[rquickjs::class]
 pub struct URLSearchParams {
     data: Vec<(String, String)>,

@@ -1,11 +1,11 @@
-use rquickjs::{Ctx, Result};
+use rquickjs::{class::Trace, Ctx, JsLifetime, Result};
 use rquickjs_extra_utils::result::ResultExt;
 use sqlx::{Executor, SqlitePool};
 
 use super::Statement;
 
+#[derive(Trace, JsLifetime)]
 #[rquickjs::class]
-#[derive(rquickjs::class::Trace)]
 pub struct Database {
     #[qjs(skip_trace)]
     pool: SqlitePool,

@@ -1,10 +1,6 @@
 use std::fmt::Write;
 
-use rquickjs::{
-    class::{Class, Trace},
-    function::Rest,
-    Ctx, Error, Result, Value,
-};
+use rquickjs::{class::Trace, function::Rest, Ctx, Error, JsLifetime, Result, Value};
 
 pub use self::formatter::Formatter;
 
@@ -17,7 +13,7 @@ const TARGET: &str = "console";
 /// # Example
 /// ```rust
 /// use rquickjs::{Context, Runtime};
-/// use rquickjs_extra::console::{Console, Formatter};
+/// use rquickjs_extra_console::{Console, Formatter};
 ///
 /// fn main() {
 ///     let rt = Runtime::new().unwrap();
@@ -32,7 +28,7 @@ const TARGET: &str = "console";
 /// ```
 ///
 /// [`log`]: https://docs.rs/log
-#[derive(Clone, Trace)]
+#[derive(Clone, Trace, JsLifetime)]
 #[rquickjs::class(frozen)]
 pub struct Console {
     target: String,
@@ -81,8 +77,6 @@ impl Console {
 
 pub fn init(ctx: &Ctx<'_>) -> Result<()> {
     let globals = ctx.globals();
-
-    Class::<Console>::register(ctx)?;
 
     globals.set(
         "console",

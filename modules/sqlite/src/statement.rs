@@ -1,5 +1,5 @@
 use rquickjs::function::Rest;
-use rquickjs::{Ctx, Object, Result};
+use rquickjs::{class::Trace, Ctx, JsLifetime, Object, Result};
 use rquickjs_extra_utils::result::ResultExt;
 use sqlx::query::Query;
 use sqlx::sqlite::SqliteArguments;
@@ -8,8 +8,8 @@ use sqlx::{sqlite::SqliteStatement, Column as _, Row as _, SqlitePool, Statement
 
 use super::{Argument, Value};
 
+#[derive(Trace, JsLifetime)]
 #[rquickjs::class]
-#[derive(rquickjs::class::Trace)]
 pub struct Statement {
     #[qjs(skip_trace)]
     stmt: SqliteStatement<'static>,

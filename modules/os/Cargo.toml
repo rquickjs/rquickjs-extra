@@ -11,7 +11,7 @@ readme = "README.md"
 home = "0.5"
 num_cpus = "1"
 once_cell = "1"
-rquickjs = { version = "0.6", features = ["macro"] }
+rquickjs = { version = "0.9", features = ["macro"] }
 rquickjs-extra-utils = { path = "../../libs/utils" }
 
 [target.'cfg(unix)'.dependencies]
@@ -23,6 +23,6 @@ windows-result = "0.2"
 windows-version = "0.1"
 
 [dev-dependencies]
-rquickjs = { version = "0.6", features = ["futures"] }
+rquickjs = { version = "0.9", features = ["futures"] }
 rquickjs-extra-test = { path = "../../libs/test" }
 tokio = { version = "1", features = ["full"] }

@@ -2,16 +2,17 @@ use std::sync::Arc;
 use std::time::Duration;
 
 use rquickjs::{
+    class::Trace,
     function::Opt,
     prelude::Func,
-    {Class, Ctx, Function, Result},
+    JsLifetime, {Class, Ctx, Function, Result},
 };
 use tokio::sync::Notify;
 
 const TARGET: &str = "timers";
 
+#[derive(Trace, JsLifetime)]
 #[rquickjs::class]
-#[derive(rquickjs::class::Trace)]
 struct Timeout {
     #[qjs(skip_trace)]
     abort: Arc<Notify>,
@@ -96,8 +97,6 @@ fn set_immediate(cb: Function) -> Result<()> {
 
 pub fn init(ctx: &Ctx<'_>) -> Result<()> {
     let globals = ctx.globals();
-
-    Class::<Timeout>::register(ctx)?;
 
     globals.set("setTimeout", Func::from(set_timeout))?;
     globals.set("clearTimeout", Func::from(clear_timeout))?;

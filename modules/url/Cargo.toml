@@ -9,7 +9,7 @@ readme = "README.md"
 
 [dependencies]
 either = { version = "1" }
-rquickjs = { version = "0.6", features = ["either", "macro"] }
+rquickjs = { version = "0.9", features = ["either", "macro"] }
 
 [dev-dependencies]
 rquickjs-extra-test = { path = "../../libs/test" }
