@@ -1,7 +1,7 @@
 [package]
 name = "rquickjs-extra-console"
 description = "Console module for RQuickJS"
-version = "0.0.1"
+version = "0.1.0"
 edition = "2021"
 license = "Apache-2.0"
 repository = "https://github.com/rquickjs/rquickjs-extra"
@@ -12,4 +12,4 @@ log = { version = "0.4" }
 rquickjs = { version = "0.9", features = ["macro"] }
 
 [dev-dependencies]
-rquickjs-extra-test = { path = "../../libs/test" }
+rquickjs-extra-test = { version = "0.1.0", path = "../../libs/test" }
