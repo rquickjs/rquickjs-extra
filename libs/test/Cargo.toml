@@ -5,7 +5,7 @@ version = "0.1.0"
 edition = "2021"
 license = "Apache-2.0"
 repository = "https://github.com/rquickjs/rquickjs-extra"
-readme = "README.md"
+authors = ["Emile Fugulin <code@efugulin.com>"]
 
 [dependencies]
 futures = { version = "0.3" }
