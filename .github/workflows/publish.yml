@@ -26,3 +26,4 @@ jobs:
         uses: katyo/publish-crates@02cc2f1ad653fb25c7d1ff9eb590a8a50d06186b
         with:
           registry-token: ${{ secrets.CRATES_TOKEN }}
+          ignore-unpublished-changes: true
