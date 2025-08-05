@@ -4,7 +4,7 @@ use sqlx::{Executor, SqlitePool};
 
 use super::Statement;
 
-#[derive(Trace, JsLifetime)]
+#[derive(Clone, Trace, JsLifetime)]
 #[rquickjs::class]
 pub struct Database {
     #[qjs(skip_trace)]
