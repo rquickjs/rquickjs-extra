@@ -21,7 +21,7 @@ sqlite = ["rquickjs-extra-sqlite"]
 [dependencies]
 rquickjs-extra-console = { version = "0.1.0", path = "modules/console", optional = true }
 rquickjs-extra-os = { version = "0.1.0", path = "modules/os", optional = true }
-rquickjs-extra-sqlite = { version = "0.1.0", path = "modules/sqlite", optional = true }
+rquickjs-extra-sqlite = { version = "0.1.1", path = "modules/sqlite", optional = true }
 rquickjs-extra-timers = { version = "0.1.0", path = "modules/timers", optional = true }
 rquickjs-extra-url = { version = "0.1.0", path = "modules/url", optional = true }
 
