@@ -15,7 +15,7 @@ rquickjs = { version = "0.9", features = [
   "macro",
   "futures",
 ] }
-rquickjs-extra-utils = { version = "0.1.0", path = "../../libs/utils" }
+rquickjs-extra-utils = { version = "0.1.1", path = "../../libs/utils" }
 sqlx = { version = "0.8", default-features = false, features = [
   "sqlite",
   "runtime-tokio",
