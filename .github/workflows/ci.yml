@@ -21,7 +21,6 @@ jobs:
       - name: Setup Rust
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
-          toolchain: stable
           components: clippy, rustfmt
       - name: Format
         run: cargo fmt --all -- --check

@@ -156,7 +156,7 @@ impl Formatter {
                     Some(description) => description.to_string()?,
                     None => String::default(),
                 };
-                write!(out, "Symbol({})", description).map_err(|_| Error::Unknown)?;
+                write!(out, "Symbol({description})").map_err(|_| Error::Unknown)?;
             }
             Type::Function => {
                 let function = value
@@ -172,9 +172,7 @@ impl Formatter {
                     }
                 });
                 match name {
-                    Some(name) => {
-                        write!(out, "[Function: {}]", name).map_err(|_| Error::Unknown)?
-                    }
+                    Some(name) => write!(out, "[Function: {name}]").map_err(|_| Error::Unknown)?,
                     None => write!(out, "[Function (anonymous)]").map_err(|_| Error::Unknown)?,
                 }
             }

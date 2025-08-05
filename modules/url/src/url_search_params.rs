@@ -264,7 +264,7 @@ impl URLSearchParams {
     fn to_string(&self) -> String {
         self.data
             .iter()
-            .map(|(name, value)| format!("{}={}", name, value))
+            .map(|(name, value)| format!("{name}={value}"))
             .collect::<Vec<_>>()
             .join("&")
     }
