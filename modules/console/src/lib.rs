@@ -51,7 +51,7 @@ impl Console {
             }
             self.formatter.format(&mut message, value)?
         }
-        log::log!(target: &self.target, level, "{}", message);
+        log::log!(target: &self.target, level, "{message}");
         Ok(())
     }
 }

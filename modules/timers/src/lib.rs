@@ -59,7 +59,7 @@ fn set_timeout_interval<'js>(
             }
 
             if let Err(err) = cb.call::<(), ()>(()) {
-                log::error!(target: TARGET, "Failed to call timeout/interval callback: {}", err);
+                log::error!(target: TARGET, "Failed to call timeout/interval callback: {err}");
                 break;
             }
 
