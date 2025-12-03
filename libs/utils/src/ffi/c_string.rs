@@ -1,7 +1,7 @@
 use std::mem;
 use std::{ffi::c_char, slice, str};
 
-use rquickjs::{qjs, Error, Exception, Result, String, Value};
+use rquickjs::{Error, Exception, Result, String, Value, qjs};
 
 #[derive(Debug)]
 pub struct CString<'js> {

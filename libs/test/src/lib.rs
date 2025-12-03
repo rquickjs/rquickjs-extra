@@ -1,9 +1,9 @@
 use rquickjs::{
+    AsyncContext, AsyncRuntime, CatchResultExt, CaughtError, Ctx, FromJs, Function, Module, Result,
     async_with,
     function::IntoArgs,
     module::{Evaluated, ModuleDef},
     promise::MaybePromise,
-    AsyncContext, AsyncRuntime, CatchResultExt, CaughtError, Ctx, FromJs, Function, Module, Result,
 };
 
 pub fn test_with<F, R>(func: F)

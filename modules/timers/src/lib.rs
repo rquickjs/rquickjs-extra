@@ -2,10 +2,11 @@ use std::sync::Arc;
 use std::time::Duration;
 
 use rquickjs::{
+    JsLifetime,
     class::Trace,
     function::Opt,
     prelude::Func,
-    JsLifetime, {Class, Ctx, Function, Result},
+    {Class, Ctx, Function, Result},
 };
 use tokio::sync::Notify;
 
@@ -110,8 +111,8 @@ pub fn init(ctx: &Ctx<'_>) -> Result<()> {
 #[cfg(test)]
 mod tests {
     use futures::FutureExt;
-    use rquickjs::promise::Promise;
     use rquickjs::CatchResultExt;
+    use rquickjs::promise::Promise;
     use rquickjs_extra_test::test_async_with;
 
     use super::*;

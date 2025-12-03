@@ -4,9 +4,9 @@
 use std::env;
 
 use rquickjs::{
+    Ctx, Exception, Result,
     module::{Declarations, Exports, ModuleDef},
     prelude::Func,
-    Ctx, Exception, Result,
 };
 use rquickjs_extra_utils::{
     module::export_default,
@@ -14,9 +14,9 @@ use rquickjs_extra_utils::{
 };
 
 #[cfg(unix)]
-use self::unix::{get_release, get_type, get_version, EOL};
+use self::unix::{EOL, get_release, get_type, get_version};
 #[cfg(windows)]
-use self::windows::{get_release, get_type, get_version, EOL};
+use self::windows::{EOL, get_release, get_type, get_version};
 
 #[cfg(unix)]
 mod unix;
@@ -78,7 +78,7 @@ impl ModuleDef for OsModule {
 
 #[cfg(test)]
 mod tests {
-    use rquickjs_extra_test::{call_test, test_async_with, ModuleEvaluator};
+    use rquickjs_extra_test::{ModuleEvaluator, call_test, test_async_with};
 
     use super::*;
 

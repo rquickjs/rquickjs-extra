@@ -1,9 +1,9 @@
 use either::Either;
 use rquickjs::{
+    Array, Coerced, Ctx, Error, FromJs, Function, JsLifetime, Null, Object, Result, Value,
     atom::PredefinedAtom,
     class::Trace,
     function::{Func, IntoArgs, Opt, This},
-    Array, Coerced, Ctx, Error, FromJs, Function, JsLifetime, Null, Object, Result, Value,
 };
 
 /// The URLSearchParams interface defines utility methods to work with the query string of a URL.

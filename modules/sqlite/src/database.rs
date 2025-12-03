@@ -1,4 +1,4 @@
-use rquickjs::{class::Trace, Ctx, JsLifetime, Result};
+use rquickjs::{Ctx, JsLifetime, Result, class::Trace};
 use rquickjs_extra_utils::result::ResultExt;
 use sqlx::{Executor, SqlitePool};
 
@@ -41,7 +41,7 @@ impl Database {
 #[cfg(test)]
 mod tests {
     use rquickjs::CatchResultExt;
-    use rquickjs_extra_test::{call_test, test_async_with, ModuleEvaluator};
+    use rquickjs_extra_test::{ModuleEvaluator, call_test, test_async_with};
 
     use crate::SqliteModule;
 

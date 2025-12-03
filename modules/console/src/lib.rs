@@ -1,6 +1,6 @@
 use std::fmt::Write;
 
-use rquickjs::{class::Trace, function::Rest, Ctx, Error, JsLifetime, Result, Value};
+use rquickjs::{Ctx, Error, JsLifetime, Result, Value, class::Trace, function::Rest};
 
 pub use self::formatter::Formatter;
 

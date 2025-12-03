@@ -1,9 +1,9 @@
 use rquickjs::{Ctx, Exception, FromJs, Result, TypedArray};
 use rquickjs_extra_utils::ffi::{CString, CVec};
 use rquickjs_extra_utils::result::ResultExt;
+use sqlx::Sqlite;
 use sqlx::query::Query;
 use sqlx::sqlite::SqliteArguments;
-use sqlx::Sqlite;
 
 #[derive(Debug)]
 pub enum Argument<'js> {

@@ -1,13 +1,13 @@
 use rquickjs::{
+    Class, Ctx, Result,
     function::{Async, Func},
     module::{Declarations, Exports, ModuleDef},
-    Class, Ctx, Result,
 };
 use rquickjs_extra_utils::module::export_default;
 
 pub use self::argument::Argument;
 pub use self::database::Database;
-pub use self::open::{open, OpenOptions};
+pub use self::open::{OpenOptions, open};
 pub use self::statement::Statement;
 pub use self::value::Value;
 

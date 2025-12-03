@@ -1,10 +1,10 @@
 use rquickjs::function::Rest;
-use rquickjs::{class::Trace, Ctx, JsLifetime, Object, Result};
+use rquickjs::{Ctx, JsLifetime, Object, Result, class::Trace};
 use rquickjs_extra_utils::result::ResultExt;
+use sqlx::Sqlite;
 use sqlx::query::Query;
 use sqlx::sqlite::SqliteArguments;
-use sqlx::Sqlite;
-use sqlx::{sqlite::SqliteStatement, Column as _, Row as _, SqlitePool, Statement as _};
+use sqlx::{Column as _, Row as _, SqlitePool, Statement as _, sqlite::SqliteStatement};
 
 use super::{Argument, Value};
 
@@ -100,7 +100,7 @@ impl Statement {
 #[cfg(test)]
 mod tests {
     use rquickjs::CatchResultExt;
-    use rquickjs_extra_test::{call_test, test_async_with, ModuleEvaluator};
+    use rquickjs_extra_test::{ModuleEvaluator, call_test, test_async_with};
 
     use crate::SqliteModule;
 

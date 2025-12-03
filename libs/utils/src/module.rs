@@ -2,7 +2,7 @@
 // Copyright Emile Fugulin for modifications.
 // SPDX-License-Identifier: Apache-2.0
 // Source: https://github.com/awslabs/llrt/blob/07eb540a204dcdce44143220876630804f381ca6/llrt_utils/src/module.rs
-use rquickjs::{module::Exports, Ctx, Object, Result, Value};
+use rquickjs::{Ctx, Object, Result, Value, module::Exports};
 
 pub fn export_default<'js, F>(ctx: &Ctx<'js>, exports: &Exports<'js>, f: F) -> Result<()>
 where
