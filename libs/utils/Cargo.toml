@@ -2,7 +2,7 @@
 name = "rquickjs-extra-utils"
 description = "Utils library for RQuickJS"
 version = "0.2.0"
-edition = "2021"
+edition = "2024"
 license = "Apache-2.0"
 repository = "https://github.com/rquickjs/rquickjs-extra"
 authors = ["Emile Fugulin <code@efugulin.com>"]
