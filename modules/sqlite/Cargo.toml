@@ -3,13 +3,14 @@ name = "rquickjs-extra-sqlite"
 description = "SQLite module for RQuickJS"
 version = "0.2.0"
 edition = "2024"
+rust-version = "1.85"
 license = "Apache-2.0"
 repository = "https://github.com/rquickjs/rquickjs-extra"
 authors = ["Emile Fugulin <code@efugulin.com>"]
 
 [dependencies]
 either = { version = "1" }
-rquickjs = { version = "0.10", features = [
+rquickjs = { version = ">=0.10,<0.12", features = [
   "array-buffer",
   "either",
   "macro",

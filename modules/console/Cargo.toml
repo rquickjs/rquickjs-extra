@@ -3,13 +3,14 @@ name = "rquickjs-extra-console"
 description = "Console module for RQuickJS"
 version = "0.2.0"
 edition = "2024"
+rust-version = "1.85"
 license = "Apache-2.0"
 repository = "https://github.com/rquickjs/rquickjs-extra"
 authors = ["Emile Fugulin <code@efugulin.com>"]
 
 [dependencies]
 log = { version = "0.4" }
-rquickjs = { version = "0.10", features = ["macro"] }
+rquickjs = { version = ">=0.10,<0.12", features = ["macro"] }
 
 [dev-dependencies]
 rquickjs-extra-test = { path = "../../libs/test" }

@@ -9,7 +9,7 @@ authors = ["Emile Fugulin <code@efugulin.com>"]
 
 [dependencies]
 log = { version = "0.4" }
-rquickjs = { version = "0.10", features = ["macro", "futures"] }
+rquickjs = { version = ">=0.10,<0.12", features = ["macro", "futures"] }
 tokio = { version = "1", features = ["sync", "time", "macros"] }
 
 [dev-dependencies]

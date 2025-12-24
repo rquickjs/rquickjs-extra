@@ -3,11 +3,12 @@ name = "rquickjs-extra-test"
 description = "Test library for RQuickJS"
 version = "0.2.0"
 edition = "2024"
+rust-version = "1.85"
 license = "Apache-2.0"
 repository = "https://github.com/rquickjs/rquickjs-extra"
 authors = ["Emile Fugulin <code@efugulin.com>"]
 
 [dependencies]
 futures = { version = "0.3" }
-rquickjs = { version = "0.10", features = ["macro", "futures"] }
+rquickjs = { version = ">=0.10,<0.12", features = ["macro", "futures"] }
 tokio = { version = "1", features = ["full"] }
