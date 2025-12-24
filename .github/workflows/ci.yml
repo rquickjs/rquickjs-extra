@@ -64,4 +64,4 @@ jobs:
         with:
           toolchain: 1.85.0
       - name: Check MSRV
-        run: cargo check --all-targets --all-features -- --no-default-features
+        run: cargo check --all-targets --all-features
