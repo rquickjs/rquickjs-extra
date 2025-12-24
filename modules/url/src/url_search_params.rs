@@ -57,10 +57,10 @@ impl URLSearchParams {
                         let mut data = Vec::new();
                         loop {
                             let next = (This(iterable.clone()), 2).apply::<Object<'_>>(&next_fn)?;
-                            if let Ok(done) = next.get::<_, bool>(PredefinedAtom::Done) {
-                                if done {
-                                    break;
-                                }
+                            if let Ok(done) = next.get::<_, bool>(PredefinedAtom::Done)
+                                && done
+                            {
+                                break;
                             }
                             let value = next.get::<_, Array<'_>>("value")?;
                             let name = value.get::<Coerced<String>>(0)?;

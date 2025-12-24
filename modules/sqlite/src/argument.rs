@@ -26,13 +26,13 @@ impl<'js> FromJs<'js> for Argument<'js> {
             return Ok(Argument::Real(float));
         } else if let Some(string) = value.as_string() {
             return Ok(Argument::Text(CString::from_string(string.clone())?));
-        } else if let Some(object) = value.as_object() {
-            if object.as_typed_array::<u8>().is_some() {
-                // Lifetime issue: https://github.com/DelSkayn/rquickjs/issues/356
-                return Ok(Argument::Blob(CVec::from_array(
-                    TypedArray::<u8>::from_value(value.clone()).or_throw(ctx)?,
-                )?));
-            }
+        } else if let Some(object) = value.as_object()
+            && object.as_typed_array::<u8>().is_some()
+        {
+            // Lifetime issue: https://github.com/DelSkayn/rquickjs/issues/356
+            return Ok(Argument::Blob(CVec::from_array(
+                TypedArray::<u8>::from_value(value.clone()).or_throw(ctx)?,
+            )?));
         }
         Err(Exception::throw_type(
             ctx,
