@@ -1,7 +1,7 @@
 [package]
 name = "rquickjs-extra-os"
 description = "OS module for RQuickJS"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2024"
 rust-version = "1.88.0"
 license = "Apache-2.0"
@@ -13,7 +13,7 @@ home = "0.5"
 num_cpus = "1"
 once_cell = "1"
 rquickjs = { version = ">=0.10,<0.12", features = ["macro"] }
-rquickjs-extra-utils = { version = "0.2.0", path = "../../libs/utils" }
+rquickjs-extra-utils = { version = "0.2.1", path = "../../libs/utils" }
 
 [target.'cfg(unix)'.dependencies]
 libc = "0.2"

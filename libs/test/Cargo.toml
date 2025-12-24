@@ -1,7 +1,7 @@
 [package]
 name = "rquickjs-extra-test"
 description = "Test library for RQuickJS"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2024"
 rust-version = "1.88.0"
 license = "Apache-2.0"

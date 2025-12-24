@@ -1,7 +1,7 @@
 [package]
 name = "rquickjs-extra-sqlite"
 description = "SQLite module for RQuickJS"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2024"
 rust-version = "1.88.0"
 license = "Apache-2.0"
@@ -16,7 +16,7 @@ rquickjs = { version = ">=0.10,<0.12", features = [
   "macro",
   "futures",
 ] }
-rquickjs-extra-utils = { version = "0.2.0", path = "../../libs/utils" }
+rquickjs-extra-utils = { version = "0.2.1", path = "../../libs/utils" }
 sqlx = { version = "0.8", default-features = false, features = [
   "sqlite",
   "runtime-tokio",
