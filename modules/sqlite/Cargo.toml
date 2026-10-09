@@ -10,7 +10,7 @@ authors = ["Emile Fugulin <code@efugulin.com>"]
 
 [dependencies]
 either = { version = "1" }
-rquickjs = { version = ">=0.10,<0.12", features = [
+rquickjs = { version = ">= 0.10, < 0.15", features = [
   "array-buffer",
   "either",
   "macro",

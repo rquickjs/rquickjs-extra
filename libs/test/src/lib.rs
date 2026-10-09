@@ -1,6 +1,5 @@
 use rquickjs::{
     AsyncContext, AsyncRuntime, CatchResultExt, CaughtError, Ctx, FromJs, Function, Module, Result,
-    async_with,
     function::IntoArgs,
     module::{Evaluated, ModuleDef},
     promise::MaybePromise,
@@ -15,6 +14,7 @@ where
     ctx.with(func);
 }
 
+#[allow(deprecated)] // remove this when we drop support for < 0.13
 pub async fn test_async_with<F>(func: F)
 where
     F: for<'js> FnOnce(Ctx<'js>) -> std::pin::Pin<Box<dyn std::future::Future<Output = ()> + 'js>>
@@ -22,6 +22,8 @@ where
 {
     let rt = AsyncRuntime::new().unwrap();
     let ctx = AsyncContext::full(&rt).await.unwrap();
+
+    use rquickjs::async_with;
 
     async_with!(ctx => |ctx| {
         func(ctx).await

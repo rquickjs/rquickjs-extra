@@ -13,10 +13,11 @@ pub struct CVec<'js> {
 #[allow(dead_code)]
 impl<'js> CVec<'js> {
     pub fn from_array(array: TypedArray<'js, u8>) -> Result<Self> {
+        let len = array.len();
         let raw = array.as_raw().or_throw(array.ctx())?;
         Ok(Self {
-            ptr: raw.ptr.as_ptr(),
-            len: raw.len,
+            ptr: raw.as_ptr() as *const u8,
+            len,
             value: array.into_value(),
         })
     }
