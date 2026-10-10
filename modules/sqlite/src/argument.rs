@@ -1,5 +1,4 @@
 use rquickjs::{CString, Ctx, Exception, FromJs, Result};
-use rquickjs_extra_utils::ffi::CVec;
 use rquickjs_extra_utils::result::ResultExt;
 use sqlx::Sqlite;
 use sqlx::query::Query;
@@ -11,7 +10,7 @@ pub enum Argument<'js> {
     Integer(i64),
     Real(f64),
     Text(CString<'js>),
-    Blob(CVec<'js>),
+    Blob(Vec<u8>),
 }
 
 impl<'js> FromJs<'js> for Argument<'js> {
@@ -29,7 +28,12 @@ impl<'js> FromJs<'js> for Argument<'js> {
         } else if let Some(object) = value.as_object()
             && let Some(typed_array) = object.as_typed_array::<u8>()
         {
-            return Ok(Argument::Blob(CVec::from_array(typed_array.clone())?));
+            // SAFETY: We do not yield to the JS engine with the slice held.
+            let bytes = unsafe { typed_array.as_bytes() };
+            let bytes = bytes
+                .ok_or_else(|| Exception::throw_type(ctx, "Typed array is detached"))?
+                .to_vec();
+            return Ok(Argument::Blob(bytes));
         }
         Err(Exception::throw_type(
             ctx,
