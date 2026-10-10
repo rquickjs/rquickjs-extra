@@ -1,5 +1,5 @@
-use rquickjs::{Ctx, Exception, FromJs, Result, TypedArray};
-use rquickjs_extra_utils::ffi::{CString, CVec};
+use rquickjs::{CString, Ctx, Exception, FromJs, Result};
+use rquickjs_extra_utils::ffi::CVec;
 use rquickjs_extra_utils::result::ResultExt;
 use sqlx::Sqlite;
 use sqlx::query::Query;
@@ -27,12 +27,9 @@ impl<'js> FromJs<'js> for Argument<'js> {
         } else if let Some(string) = value.as_string() {
             return Ok(Argument::Text(CString::from_string(string.clone())?));
         } else if let Some(object) = value.as_object()
-            && object.as_typed_array::<u8>().is_some()
+            && let Some(typed_array) = object.as_typed_array::<u8>()
         {
-            // Lifetime issue: https://github.com/DelSkayn/rquickjs/issues/356
-            return Ok(Argument::Blob(CVec::from_array(
-                TypedArray::<u8>::from_value(value.clone()).or_throw(ctx)?,
-            )?));
+            return Ok(Argument::Blob(CVec::from_array(typed_array.clone())?));
         }
         Err(Exception::throw_type(
             ctx,
@@ -54,7 +51,7 @@ impl<'js> Argument<'js> {
             Argument::Null => query.try_bind::<Option<i32>>(None).or_throw(ctx),
             Argument::Integer(int) => query.try_bind(*int).or_throw(ctx),
             Argument::Real(float) => query.try_bind(*float).or_throw(ctx),
-            Argument::Text(string) => query.try_bind(string.as_str()?).or_throw(ctx),
+            Argument::Text(string) => query.try_bind(string.as_str()).or_throw(ctx),
             Argument::Blob(blob) => query.try_bind(blob.as_slice()).or_throw(ctx),
         }
     }
