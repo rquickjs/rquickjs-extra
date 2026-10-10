@@ -84,179 +84,167 @@ mod tests {
 
     #[tokio::test]
     async fn test_type() {
-        test_async_with(|ctx| {
-            Box::pin(async move {
-                ModuleEvaluator::eval_rust::<OsModule>(ctx.clone(), "os")
-                    .await
-                    .unwrap();
+        test_async_with(async |ctx| {
+            ModuleEvaluator::eval_rust::<OsModule>(ctx.clone(), "os")
+                .await
+                .unwrap();
 
-                let module = ModuleEvaluator::eval_js(
-                    ctx.clone(),
-                    "test",
-                    r#"
+            let module = ModuleEvaluator::eval_js(
+                ctx.clone(),
+                "test",
+                r#"
                         import { type } from 'os';
 
                         export async function test() {
                             return type()
                         }
                     "#,
-                )
-                .await
-                .unwrap();
+            )
+            .await
+            .unwrap();
 
-                let result = call_test::<String, _>(&ctx, &module, ()).await;
+            let result = call_test::<String, _>(&ctx, &module, ()).await;
 
-                assert!(result == "Linux" || result == "Windows_NT" || result == "Darwin");
-            })
+            assert!(result == "Linux" || result == "Windows_NT" || result == "Darwin");
         })
         .await;
     }
 
     #[tokio::test]
     async fn test_release() {
-        test_async_with(|ctx| {
-            Box::pin(async move {
-                ModuleEvaluator::eval_rust::<OsModule>(ctx.clone(), "os")
-                    .await
-                    .unwrap();
+        test_async_with(async |ctx| {
+            ModuleEvaluator::eval_rust::<OsModule>(ctx.clone(), "os")
+                .await
+                .unwrap();
 
-                let module = ModuleEvaluator::eval_js(
-                    ctx.clone(),
-                    "test",
-                    r#"
+            let module = ModuleEvaluator::eval_js(
+                ctx.clone(),
+                "test",
+                r#"
                         import { release } from 'os';
 
                         export async function test() {
                             return release()
                         }
                     "#,
-                )
-                .await
-                .unwrap();
+            )
+            .await
+            .unwrap();
 
-                let result = call_test::<String, _>(&ctx, &module, ()).await;
+            let result = call_test::<String, _>(&ctx, &module, ()).await;
 
-                assert!(!result.is_empty()); // Format is platform dependant
-            })
+            assert!(!result.is_empty()); // Format is platform dependant
         })
         .await;
     }
 
     #[tokio::test]
     async fn test_version() {
-        test_async_with(|ctx| {
-            Box::pin(async move {
-                ModuleEvaluator::eval_rust::<OsModule>(ctx.clone(), "os")
-                    .await
-                    .unwrap();
+        test_async_with(async |ctx| {
+            ModuleEvaluator::eval_rust::<OsModule>(ctx.clone(), "os")
+                .await
+                .unwrap();
 
-                let module = ModuleEvaluator::eval_js(
-                    ctx.clone(),
-                    "test",
-                    r#"
+            let module = ModuleEvaluator::eval_js(
+                ctx.clone(),
+                "test",
+                r#"
                         import { version } from 'os';
 
                         export async function test() {
                             return version()
                         }
                     "#,
-                )
-                .await
-                .unwrap();
+            )
+            .await
+            .unwrap();
 
-                let result = call_test::<String, _>(&ctx, &module, ()).await;
+            let result = call_test::<String, _>(&ctx, &module, ()).await;
 
-                assert!(!result.is_empty()); // Format is platform dependant
-            })
+            assert!(!result.is_empty()); // Format is platform dependant
         })
         .await;
     }
 
     #[tokio::test]
     async fn test_available_parallelism() {
-        test_async_with(|ctx| {
-            Box::pin(async move {
-                ModuleEvaluator::eval_rust::<OsModule>(ctx.clone(), "os")
-                    .await
-                    .unwrap();
+        test_async_with(async |ctx| {
+            ModuleEvaluator::eval_rust::<OsModule>(ctx.clone(), "os")
+                .await
+                .unwrap();
 
-                let module = ModuleEvaluator::eval_js(
-                    ctx.clone(),
-                    "test",
-                    r#"
+            let module = ModuleEvaluator::eval_js(
+                ctx.clone(),
+                "test",
+                r#"
                         import { availableParallelism } from 'os';
 
                         export async function test() {
                             return availableParallelism()
                         }
                     "#,
-                )
-                .await
-                .unwrap();
+            )
+            .await
+            .unwrap();
 
-                let result = call_test::<usize, _>(&ctx, &module, ()).await;
+            let result = call_test::<usize, _>(&ctx, &module, ()).await;
 
-                assert!(result > 0);
-            })
+            assert!(result > 0);
         })
         .await;
     }
 
     #[tokio::test]
     async fn test_eol() {
-        test_async_with(|ctx| {
-            Box::pin(async move {
-                ModuleEvaluator::eval_rust::<OsModule>(ctx.clone(), "os")
-                    .await
-                    .unwrap();
+        test_async_with(async |ctx| {
+            ModuleEvaluator::eval_rust::<OsModule>(ctx.clone(), "os")
+                .await
+                .unwrap();
 
-                let module = ModuleEvaluator::eval_js(
-                    ctx.clone(),
-                    "test",
-                    r#"
+            let module = ModuleEvaluator::eval_js(
+                ctx.clone(),
+                "test",
+                r#"
                         import { EOL } from 'os';
 
                         export async function test() {
                             return EOL
                         }
                     "#,
-                )
-                .await
-                .unwrap();
+            )
+            .await
+            .unwrap();
 
-                let result = call_test::<String, _>(&ctx, &module, ()).await;
-                assert!(result == EOL);
-            })
+            let result = call_test::<String, _>(&ctx, &module, ()).await;
+            assert!(result == EOL);
         })
         .await;
     }
 
     #[tokio::test]
     async fn test_arch() {
-        test_async_with(|ctx| {
-            Box::pin(async move {
-                ModuleEvaluator::eval_rust::<OsModule>(ctx.clone(), "os")
-                    .await
-                    .unwrap();
+        test_async_with(async |ctx| {
+            ModuleEvaluator::eval_rust::<OsModule>(ctx.clone(), "os")
+                .await
+                .unwrap();
 
-                let module = ModuleEvaluator::eval_js(
-                    ctx.clone(),
-                    "test",
-                    r#"
+            let module = ModuleEvaluator::eval_js(
+                ctx.clone(),
+                "test",
+                r#"
                         import { arch } from 'os';
 
                         export async function test() {
                             return arch()
                         }
                     "#,
-                )
-                .await
-                .unwrap();
+            )
+            .await
+            .unwrap();
 
-                let result = call_test::<String, _>(&ctx, &module, ()).await;
+            let result = call_test::<String, _>(&ctx, &module, ()).await;
 
-                assert!(!result.is_empty()); // Format is platform dependant
-            })
+            assert!(!result.is_empty()); // Format is platform dependant
         })
         .await;
     }

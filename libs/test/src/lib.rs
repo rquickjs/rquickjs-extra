@@ -1,6 +1,5 @@
 use rquickjs::{
     AsyncContext, AsyncRuntime, CatchResultExt, CaughtError, Ctx, FromJs, Function, Module, Result,
-    async_with,
     function::IntoArgs,
     module::{Evaluated, ModuleDef},
     promise::MaybePromise,
@@ -15,18 +14,15 @@ where
     ctx.with(func);
 }
 
-pub async fn test_async_with<F>(func: F)
+pub async fn test_async_with<F, R>(func: F)
 where
-    F: for<'js> FnOnce(Ctx<'js>) -> std::pin::Pin<Box<dyn std::future::Future<Output = ()> + 'js>>
-        + Send,
+    F: for<'js> AsyncFnOnce(Ctx<'js>) -> R + Send,
+    R: Send + 'static,
 {
     let rt = AsyncRuntime::new().unwrap();
     let ctx = AsyncContext::full(&rt).await.unwrap();
 
-    async_with!(ctx => |ctx| {
-        func(ctx).await
-    })
-    .await;
+    ctx.async_with(func).await;
 }
 
 pub async fn call_test<'js, T, A>(ctx: &Ctx<'js>, module: &Module<'js, Evaluated>, args: A) -> T
