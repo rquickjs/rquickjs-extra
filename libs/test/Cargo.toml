@@ -10,5 +10,5 @@ authors = ["Emile Fugulin <code@efugulin.com>"]
 
 [dependencies]
 futures = { version = "0.3" }
-rquickjs = { version = ">= 0.10, < 0.15", features = ["macro", "futures"] }
+rquickjs = { version = "0.14", features = ["macro", "futures"] }
 tokio = { version = "1", features = ["full"] }

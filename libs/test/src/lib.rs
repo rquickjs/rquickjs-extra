@@ -14,21 +14,15 @@ where
     ctx.with(func);
 }
 
-#[allow(deprecated)] // remove this when we drop support for < 0.13
-pub async fn test_async_with<F>(func: F)
+pub async fn test_async_with<F, R>(func: F)
 where
-    F: for<'js> FnOnce(Ctx<'js>) -> std::pin::Pin<Box<dyn std::future::Future<Output = ()> + 'js>>
-        + Send,
+    F: for<'js> AsyncFnOnce(Ctx<'js>) -> R + Send,
+    R: Send + 'static,
 {
     let rt = AsyncRuntime::new().unwrap();
     let ctx = AsyncContext::full(&rt).await.unwrap();
 
-    use rquickjs::async_with;
-
-    async_with!(ctx => |ctx| {
-        func(ctx).await
-    })
-    .await;
+    ctx.async_with(func).await;
 }
 
 pub async fn call_test<'js, T, A>(ctx: &Ctx<'js>, module: &Module<'js, Evaluated>, args: A) -> T

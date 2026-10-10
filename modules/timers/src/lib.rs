@@ -110,7 +110,6 @@ pub fn init(ctx: &Ctx<'_>) -> Result<()> {
 
 #[cfg(test)]
 mod tests {
-    use futures::FutureExt;
     use rquickjs::CatchResultExt;
     use rquickjs::promise::Promise;
     use rquickjs_extra_test::test_async_with;
@@ -119,13 +118,12 @@ mod tests {
 
     #[tokio::test]
     async fn test_set_timeout() {
-        test_async_with(|ctx| {
-            async move {
-                init(&ctx).unwrap();
+        test_async_with(async |ctx| {
+            init(&ctx).unwrap();
 
-                let result = ctx
-                    .eval::<Promise, _>(
-                        r#"
+            let result = ctx
+                .eval::<Promise, _>(
+                    r#"
 
                         (async function(){
                             return new Promise((resolve, reject) => {
@@ -135,30 +133,27 @@ mod tests {
                             });
                         })()
                     "#,
-                    )
-                    .catch(&ctx)
-                    .unwrap()
-                    .into_future::<String>()
-                    .await
-                    .catch(&ctx)
-                    .unwrap();
+                )
+                .catch(&ctx)
+                .unwrap()
+                .into_future::<String>()
+                .await
+                .catch(&ctx)
+                .unwrap();
 
-                assert_eq!("Hello World", result);
-            }
-            .boxed_local()
+            assert_eq!("Hello World", result);
         })
         .await
     }
 
     #[tokio::test]
     async fn test_set_interval() {
-        test_async_with(|ctx| {
-            async move {
-                init(&ctx).unwrap();
+        test_async_with(async |ctx| {
+            init(&ctx).unwrap();
 
-                let result = ctx
-                    .eval::<Promise, _>(
-                        r#"
+            let result = ctx
+                .eval::<Promise, _>(
+                    r#"
 
                         (async function(){
                             return new Promise((resolve, reject) => {
@@ -171,17 +166,15 @@ mod tests {
                             });
                         })()
                     "#,
-                    )
-                    .catch(&ctx)
-                    .unwrap()
-                    .into_future::<u32>()
-                    .await
-                    .catch(&ctx)
-                    .unwrap();
+                )
+                .catch(&ctx)
+                .unwrap()
+                .into_future::<u32>()
+                .await
+                .catch(&ctx)
+                .unwrap();
 
-                assert_eq!(3, result);
-            }
-            .boxed_local()
+            assert_eq!(3, result);
         })
         .await
     }

@@ -106,8 +106,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_statement_all() {
-        test_async_with(|ctx| {
-            Box::pin(async move {
+        test_async_with(async |ctx| {
                 ModuleEvaluator::eval_rust::<SqliteModule>(ctx.clone(), "sqlite")
                     .await
                     .unwrap();
@@ -135,15 +134,13 @@ mod tests {
 
                 let result = call_test::<i64, _>(&ctx, &module, ()).await;
                 assert_eq!(result, 2);
-            })
         })
         .await;
     }
 
     #[tokio::test]
     async fn test_statement_get() {
-        test_async_with(|ctx| {
-            Box::pin(async move {
+        test_async_with(async |ctx| {
                 ModuleEvaluator::eval_rust::<SqliteModule>(ctx.clone(), "sqlite")
                     .await
                     .unwrap();
@@ -170,15 +167,13 @@ mod tests {
 
                 let result = call_test::<i64, _>(&ctx, &module, ()).await;
                 assert_eq!(result, 1);
-            })
         })
         .await;
     }
 
     #[tokio::test]
     async fn test_statement_run() {
-        test_async_with(|ctx| {
-            Box::pin(async move {
+        test_async_with(async |ctx| {
                 ModuleEvaluator::eval_rust::<SqliteModule>(ctx.clone(), "sqlite")
                     .await
                     .unwrap();
@@ -204,7 +199,6 @@ mod tests {
 
                 let result = call_test::<i64, _>(&ctx, &module, ()).await;
                 assert_eq!(result, 2);
-            })
         })
         .await;
     }
